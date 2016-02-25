@@ -25,27 +25,26 @@
       display: block;
     }
   </style>
+  <script type="text/javascript" src="adblock-detect.js"></script>
 </head>
 <body>
 <h1>Detecting AdBlock</h1>
 
-<p class="notblocked">AdBlock is enabled.</p>
+<p class="blocked">AdBlock is enabled.</p>
 
-<p class="blocked">AdBlock is disabled.</p>
+<p class="notblocked">AdBlock is disabled.</p>
 
 <script>
-(function(){
-  var test = document.createElement('div');
-  test.innerHTML = '&nbsp;';
-  test.className = 'adsbox';
-  document.body.appendChild(test);
-  window.setTimeout(function() {
-    if (test.offsetHeight === 0) {
-      document.body.classList.add('adblock');
-    }
-    test.remove();
-  }, 100);
-})();
+checkAdBlock(adBlockDetected, adBlockNotDetected);
+
+function adBlockDetected() {
+    // Ad Blocker Detected, do stuff here
+    document.body.classList.add('adblock');
+}
+
+function adBlockNotDetected() {
+    // Ad Blocker Not Detected, do stuff here
+}
 </script>
 </body>
 </html>
